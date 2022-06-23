@@ -92,11 +92,12 @@ class MyPopupIconButton extends StatelessWidget {
 
   double getTrianglePointerHorizontalOffset(Size size, BuildContext context) {
     return getHorizontalOffset(
-        size: size,
-        buttonPosition: getPosition(
-          relativePosition,
-        ),
-        windowWidth: MediaQuery.of(context).size.width);
+      size: size,
+      buttonPosition: getPosition(
+        relativePosition,
+      ),
+      windowWidth: MediaQuery.of(context).size.width,
+    );
   }
 
   /// Sometimes to avoid widgets being rendered outside the screen, we may need to apply a horizontal offset to the popup menu. This method can be used to get the horizontal offset using [size], [buttonPosition], and [windowWidth].
@@ -114,9 +115,9 @@ class MyPopupIconButton extends StatelessWidget {
     required double windowWidth,
     double padding = 10,
   }) {
-    if (buttonPosition.dx - (size.width / 2) < 0) {
+    if (buttonPosition.dx - (size.width / 2) - padding < 0) {
       return size.width / 2 - buttonPosition.dx + padding;
-    } else if (buttonPosition.dx + (size.width / 2) > windowWidth) {
+    } else if (buttonPosition.dx + (size.width / 2) + padding > windowWidth) {
       return windowWidth - (buttonPosition.dx + size.width / 2) - padding;
     } else {
       return 0;
